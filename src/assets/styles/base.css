@@ -1,0 +1,9 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --light-graysh-violet: hsl(270, 3%, 87%);
+    --dark-gray-violet: hsl(279, 6%, 55%);
+    --very-dark-violet: hsl(278, 68%, 11%);
+    --font-size: 18px;
+    --font-fam:'Space Grotesk', sans-serif;
+    --red: hsl(0, 100%, 66%);
+}
