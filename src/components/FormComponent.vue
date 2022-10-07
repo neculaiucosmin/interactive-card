@@ -1,14 +1,17 @@
 <template>
   <div class="page">
-    <CardComponent :cvc="123"/>
+    <CardComponent
+        :cvc="123"
+        :full_name="full_name"
+        :MM="MM" :YY="YY"/>
     <form>
       <div class="card-info">
         <label for="card-holder">CARDHOLDER NAME</label><br>
-        <input type="text" id="card-holder" placeholder="e.g Jane Appleseed">
+        <input type="text" id="card-holder" placeholder="e.g Jane Appleseed" required>
       </div>
       <div class="card-info">
         <label for="card-number">CARD NUMBER</label><br>
-        <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000">
+        <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000" required>
       </div>
       <div class="date-cvv">
         <div class="labels">
@@ -16,9 +19,9 @@
           <label for="cvc">CVC</label>
         </div>
         <div class="input-wrapper">
-          <input type="text" id="exp-date" placeholder="MM">
-          <input type="text" placeholder="YY">
-          <input type="text" id="cvc" placeholder="123">
+          <input type="text" id="exp-date" placeholder="MM" required maxlength="2">
+          <input type="text" placeholder="YY" required maxlength="2">
+          <input type="text" id="cvc" placeholder="123" required maxlength="3">
         </div>
       </div>
       <button id="btn">Confirm</button>
@@ -30,6 +33,13 @@
 import CardComponent from "@/components/CardComponent";
 export default {
   name: "FormComponent",
+  data(){
+    return{
+      full_name: "JANE APPLESEED",
+      MM:"00",
+      YY:"00"
+    }
+  },
   components:{
     CardComponent
   }

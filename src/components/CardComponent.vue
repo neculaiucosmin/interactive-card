@@ -2,7 +2,7 @@
   <div class="container">
     <div class="back-card-container">
       <img class="card-back" src="../assets/bg-card-back.png" alt="Back card">
-      <p class="cvv">{{cvc}}</p>
+      <p class="cvc">{{cvc}}</p>
     </div>
     <div class="front-card-container">
       <img class="card-front" src="../assets/bg-card-front.png" alt="Front card">
@@ -10,6 +10,16 @@
         <div class="circle-wrapper">
           <div id="full-circle"></div>
           <div id="empty-circle"></div>
+          <div id="card-number-wrapper">
+            <span>0000</span>
+            <span>0000</span>
+            <span>0000</span>
+            <span>0000</span>
+          </div>
+          <div id="name-exp-date">
+            <div class="name-date">{{full_name}}</div>
+            <div class="name-date">{{MM}}/{{YY}}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -23,6 +33,15 @@ export default {
   props: {
     "cvc":{
       type:String
+    },
+    "full_name": {
+      type: String
+    },
+    "MM": {
+      type: String
+    },
+    "YY":{
+      type: String
     }
   }
 }
@@ -38,19 +57,18 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
-  /*max-width: 100vw;*/
 }
 .back-card-container{
   position: relative;
-  width: 100vw;
+  width: fit-content;
   height: fit-content;
 }
-.cvv{
+.cvc{
   position: absolute;
   color: var(--white);
   font-family: var(--font-fam);
   font-size: var(--font-size);
-  right: 3rem;
+  right: 120px;
   z-index: 1;
   top: 5.7rem;
 }
@@ -85,16 +103,41 @@ export default {
   height: 40px;
 }
 #full-circle{
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   background-color: var(--white);
 }
 #empty-circle{
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   border: 2px solid var(--white);
+}
+
+#card-number-wrapper{
+  bottom: -50px;
+  display: inline-flex;
+  justify-content: center;
+  color: var(--white);
+  font-size: 30px;
+  font-family: var(--font-fam);
+  font-size: 13px;  gap: .5em;
+  position: absolute;
+}
+#card-number-wrapper>span{
+  font-size: var(--font-size);
+}
+#name-exp-date{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 250px;
+  color: var(--white);
+  font-family: var(--font-fam);
+  font-size: 13px;
+  position: absolute;
+  bottom: -80px;
 }
 
 </style>
