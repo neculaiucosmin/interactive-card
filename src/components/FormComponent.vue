@@ -1,17 +1,17 @@
 <template>
   <div class="page">
     <CardComponent
-        :cvc="123"
+        :cvc="CVC"
         :full_name="full_name"
         :MM="MM" :YY="YY"/>
     <form>
       <div class="card-info">
         <label for="card-holder">CARDHOLDER NAME</label><br>
-        <input type="text" id="card-holder" placeholder="e.g Jane Appleseed" required>
+        <input type="text" id="card-holder" placeholder="e.g Jane Appleseed" required v-model="full_name" maxlength="50">
       </div>
       <div class="card-info">
         <label for="card-number">CARD NUMBER</label><br>
-        <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000" required>
+        <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000" required maxlength="16">
       </div>
       <div class="date-cvv">
         <div class="labels">
@@ -19,9 +19,9 @@
           <label for="cvc">CVC</label>
         </div>
         <div class="input-wrapper">
-          <input type="text" id="exp-date" placeholder="MM" required maxlength="2">
-          <input type="text" placeholder="YY" required maxlength="2">
-          <input type="text" id="cvc" placeholder="123" required maxlength="3">
+          <input type="text" id="exp-date" placeholder="MM" required maxlength="2" v-model="MM">
+          <input type="text" placeholder="YY" required maxlength="2" v-model="YY">
+          <input type="text" id="cvc" placeholder="123" required maxlength="3" v-model="CVC">
         </div>
       </div>
       <button id="btn">Confirm</button>
@@ -31,16 +31,18 @@
 
 <script>
 import CardComponent from "@/components/CardComponent";
+
 export default {
   name: "FormComponent",
-  data(){
-    return{
-      full_name: "JANE APPLESEED",
-      MM:"00",
-      YY:"00"
+  data() {
+    return {
+      full_name: "",
+      MM: "",
+      YY: "",
+      CVC: ""
     }
   },
-  components:{
+  components: {
     CardComponent
   }
 }
@@ -48,14 +50,18 @@ export default {
 
 <style scoped>
 @import "../assets/styles/base.css";
-.page{
+
+.page {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  /*align-items: center;*/
   padding: 0;
   margin: 0;
   /*overflow-x: hidden;*/
 }
-form{
+
+form {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -63,25 +69,32 @@ form{
   max-width: 90vw;
   margin-top: 1rem;
 }
-label{
+
+label {
   color: var(--very-dark-violet);
   font-family: var(--font-fam);
   font-size: 13px;
 }
-input{
+.labels{
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3rem;
+}
+
+input {
   border-radius: 5px;
-  border: 1px solid var(--dark-gray-violet);
+  border: 1px solid var(--light-graysh-violet);
   color: var(--dark-gray-violet);
   font-size: var(--font-size);
   font-family: var(--font-fam);
   margin-top: .5rem;
-  padding: .8rem 0 .8rem .5rem ;
+  padding: .8rem 0 .8rem .5rem;
   width: 100%;
 }
-input:focus{
+
+input:focus {
   color: var(--very-dark-violet);
 }
-
 
 .input-wrapper {
   display: grid;
@@ -89,7 +102,7 @@ input:focus{
   gap: 1.5rem;
 }
 
-button{
+button {
   border: none;
   border-radius: 7px;
   background-color: var(--very-dark-violet);

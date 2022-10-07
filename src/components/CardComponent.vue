@@ -2,7 +2,7 @@
   <div class="container">
     <div class="back-card-container">
       <img class="card-back" src="../assets/bg-card-back.png" alt="Back card">
-      <p class="cvc">{{cvc}}</p>
+      <p class="cvc">{{ isDefaultValue(cvc) ? '000' : cvc }}</p>
     </div>
     <div class="front-card-container">
       <img class="card-front" src="../assets/bg-card-front.png" alt="Front card">
@@ -17,8 +17,8 @@
             <span>0000</span>
           </div>
           <div id="name-exp-date">
-            <div class="name-date">{{full_name}}</div>
-            <div class="name-date">{{MM}}/{{YY}}</div>
+            <div class="name-date">{{ isDefaultValue(full_name) ? 'JANE APPLESEED' :full_name }}</div>
+            <div class="name-date">{{ isDefaultValue(MM) ? '00' : MM }}/{{ isDefaultValue(YY) ? '00' : YY }}</div>
           </div>
         </div>
       </div>
@@ -31,8 +31,8 @@
 export default {
   name: "CardComponent",
   props: {
-    "cvc":{
-      type:String
+    "cvc": {
+      type: String
     },
     "full_name": {
       type: String
@@ -40,8 +40,13 @@ export default {
     "MM": {
       type: String
     },
-    "YY":{
+    "YY": {
       type: String
+    }
+  },
+  methods: {
+    isDefaultValue(s) {
+      return s.length === 0;
     }
   }
 }
@@ -58,12 +63,14 @@ export default {
   flex-direction: column;
   position: relative;
 }
-.back-card-container{
+
+.back-card-container {
   position: relative;
   width: fit-content;
   height: fit-content;
 }
-.cvc{
+
+.cvc {
   position: absolute;
   color: var(--white);
   font-family: var(--font-fam);
@@ -72,28 +79,32 @@ export default {
   z-index: 1;
   top: 5.7rem;
 }
-.card-back{
+
+.card-back {
   scale: .6;
 }
 
 /*^back card*/
 
 
-.front-card-container{
+.front-card-container {
   position: relative;
 
 }
-.card-front{
+
+.card-front {
   scale: .6;
   position: absolute;
   left: -4.5rem;
   top: -10.4rem;
 }
-.card-details{
+
+.card-details {
   position: absolute;
   top: 0;
 }
-.circle-wrapper{
+
+.circle-wrapper {
   position: relative;
   top: -6.5rem;
   left: 1.5rem;
@@ -102,33 +113,37 @@ export default {
   gap: 1rem;
   height: 40px;
 }
-#full-circle{
+
+#full-circle {
   height: 35px;
   width: 35px;
   border-radius: 50%;
   background-color: var(--white);
 }
-#empty-circle{
+
+#empty-circle {
   height: 15px;
   width: 15px;
   border-radius: 50%;
   border: 2px solid var(--white);
 }
 
-#card-number-wrapper{
+#card-number-wrapper {
   bottom: -50px;
   display: inline-flex;
   justify-content: center;
   color: var(--white);
-  font-size: 30px;
   font-family: var(--font-fam);
-  font-size: 13px;  gap: .5em;
+  font-size: 13px;
+  gap: .5em;
   position: absolute;
 }
-#card-number-wrapper>span{
+
+#card-number-wrapper > span {
   font-size: var(--font-size);
 }
-#name-exp-date{
+
+#name-exp-date {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
