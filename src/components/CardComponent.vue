@@ -17,7 +17,7 @@
             <span>0000</span>
           </div>
           <div id="name-exp-date">
-            <div class="name-date">{{ isDefaultValue(full_name) ? 'JANE APPLESEED' :full_name }}</div>
+            <div class="name-date">{{ isDefaultValue(full_name) ? 'JANE APPLESEED' : full_name }}</div>
             <div class="name-date">{{ isDefaultValue(MM) ? '00' : MM }}/{{ isDefaultValue(YY) ? '00' : YY }}</div>
           </div>
         </div>
@@ -153,6 +153,26 @@ export default {
   font-size: 13px;
   position: absolute;
   bottom: -80px;
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    background-image: url("../assets/bg-main-desktop.png");
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .back-card-container{
+    left: 14rem;
+  }
+
+  .card-front{
+    left: 5rem;
+  }
+  .card-details{
+    left: 15rem;
+  }
+
 }
 
 </style>

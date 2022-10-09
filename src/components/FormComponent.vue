@@ -4,28 +4,31 @@
         :cvc="CVC"
         :full_name="full_name"
         :MM="MM" :YY="YY"/>
-    <form>
-      <div class="card-info">
-        <label for="card-holder">CARDHOLDER NAME</label><br>
-        <input type="text" id="card-holder" placeholder="e.g Jane Appleseed" required v-model="full_name" maxlength="50">
-      </div>
-      <div class="card-info">
-        <label for="card-number">CARD NUMBER</label><br>
-        <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000" required maxlength="16">
-      </div>
-      <div class="date-cvv">
-        <div class="labels">
-          <label for="exp-date">EXP. DATE (MM/YY)</label>
-          <label for="cvc">CVC</label>
+    <div class="form-wrapper">
+      <form>
+        <div class="card-info">
+          <label for="card-holder">CARDHOLDER NAME</label><br>
+          <input type="text" id="card-holder" placeholder="e.g Jane Appleseed" required v-model="full_name"
+                 maxlength="50">
         </div>
-        <div class="input-wrapper">
-          <input type="text" id="exp-date" placeholder="MM" required maxlength="2" v-model="MM">
-          <input type="text" placeholder="YY" required maxlength="2" v-model="YY">
-          <input type="text" id="cvc" placeholder="123" required maxlength="3" v-model="CVC">
+        <div class="card-info">
+          <label for="card-number">CARD NUMBER</label><br>
+          <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 0000" required maxlength="16">
         </div>
-      </div>
-      <button id="btn">Confirm</button>
-    </form>
+        <div class="date-cvv">
+          <div class="labels">
+            <label for="exp-date">EXP. DATE (MM/YY)</label>
+            <label for="cvc">CVC</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="exp-date" placeholder="MM" required maxlength="2" v-model="MM">
+            <input type="text" placeholder="YY" required maxlength="2" v-model="YY">
+            <input type="text" id="cvc" placeholder="123" maxlength="3" v-model="CVC" required>
+          </div>
+        </div>
+        <button id="btn">Confirm</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -112,6 +115,22 @@ button {
   margin-top: 1.5rem;
   width: 100%;
   padding: 1rem;
+}
+@media screen and (min-width: 900px){
+ .page{
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+   height: 100vh;
+ }
+  form{
+    max-width: 10cm;
+  }
+  .form-wrapper{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
 }
 
 </style>
